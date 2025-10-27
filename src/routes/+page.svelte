@@ -34,20 +34,20 @@
 	};
 </script>
 
-<div class="absolute left-[5px] top-[5px]">
+<div class="absolute top-[5px] left-[5px]">
 	<img src="/logo.png" alt="VBQ Lookup" class="h-12 w-auto" />
 </div>
 
 <div class="flex min-h-screen items-start justify-center pt-[calc(33vh)]">
 	<form class="flex w-full max-w-2xl flex-col items-center space-y-6" onsubmit={handleSubmit}>
-		<div class="flex w-full items-center justify-center space-x-3">
+		<div class="flex w-full items-center justify-center space-x-2">
 			<Input
 				type="text"
 				placeholder="Code Postal"
 				required
 				bind:value={postalCode}
 				autocomplete="postal-code"
-				class="h-12 text-lg"
+				class="h-12 md:min-w-[250px]"
 			/>
 			<Button type="submit" class="h-12 text-lg">Rechercher</Button>
 		</div>
