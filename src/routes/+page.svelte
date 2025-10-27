@@ -34,31 +34,55 @@
 	};
 </script>
 
-<div class="absolute top-[5px] left-[5px]">
-	<img src="/logo.png" alt="VBQ Lookup" class="h-12 w-auto" />
-</div>
-
-<div class="flex min-h-screen items-start justify-center pt-[calc(33vh)]">
-	<form class="flex w-full max-w-2xl flex-col items-center space-y-6" onsubmit={handleSubmit}>
-		<div class="flex w-full items-center justify-center space-x-2">
-			<Input
-				type="text"
-				placeholder="Code Postal"
-				required
-				bind:value={postalCode}
-				autocomplete="postal-code"
-				class="h-12 md:min-w-[250px]"
-			/>
-			<Button type="submit" class="h-12 text-lg">Rechercher</Button>
-		</div>
-
-		{#if result}
-			<div class="w-full rounded-lg bg-white/10 p-4 text-center">
-				<p class="text-lg font-semibold">{result['Region Espoir']}</p>
-				<p class="text-sm text-gray-500">{result.Ville}</p>
+<main class="flex min-h-screen items-center justify-center px-4 py-16">
+	<section
+		class="w-full max-w-2xl space-y-8 rounded-2xl border border-white/50 bg-white/90 p-10 shadow-2xl backdrop-blur-sm"
+	>
+		<header class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+			<img src="/logo.png" alt="VBQ Lookup" class="w-16 drop-shadow-md" />
+			<div>
+				<h1 class="text-3xl font-semibold text-[#0b3466]">Recherche de club VBQ</h1>
+				<p class="text-sm text-[#0b3466]/70">
+					Trouve rapidement la région Espoir associée à un ton code postal.
+				</p>
 			</div>
-		{:else if errorMessage}
-			<p class="text-sm text-red-500">{errorMessage}</p>
-		{/if}
-	</form>
-</div>
+		</header>
+
+		<form
+			class="flex w-full flex-col items-center space-y-6"
+			on:submit|preventDefault={handleSubmit}
+		>
+			<div
+				class="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:space-x-3"
+			>
+				<Input
+					type="text"
+					placeholder="Code Postal"
+					required
+					bind:value={postalCode}
+					autocomplete="postal-code"
+					class="h-12 w-full rounded-lg border border-[#0b3466]/30 bg-white/70 text-[#0b3466] placeholder:text-[#0b3466]/50 focus-visible:border-[#047ED6] focus-visible:ring-[#047ED6] sm:max-w-xs"
+				/>
+				<Button
+					type="submit"
+					class="h-12 w-full  px-8 text-lg font-semibold text-white shadow-lg transition hover:shadow-xl sm:w-auto"
+				>
+					Rechercher
+				</Button>
+			</div>
+
+			{#if result}
+				<div
+					class="w-full rounded-xl border border-[#0b3466]/15 bg-[#0b3466]/5 p-6 text-center text-[#0b3466] shadow-sm"
+				>
+					<p class="text-lg font-semibold tracking-wide uppercase">
+						{result['Region Espoir']}
+					</p>
+					<p class="mt-1 text-sm text-[#0b3466]/70 uppercase">{result.Ville}</p>
+				</div>
+			{:else if errorMessage}
+				<p class="text-sm font-medium text-red-600">{errorMessage}</p>
+			{/if}
+		</form>
+	</section>
+</main>
