@@ -48,10 +48,7 @@
 			</div>
 		</header>
 
-		<form
-			class="flex w-full flex-col items-center space-y-6"
-			on:submit|preventDefault={handleSubmit}
-		>
+		<form class="flex w-full flex-col items-center space-y-6" onsubmit={handleSubmit}>
 			<div
 				class="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:space-x-3"
 			>
