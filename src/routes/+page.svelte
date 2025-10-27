@@ -11,7 +11,6 @@
 	const normalize = (code: string) => code.replace(/\s+/g, '').toUpperCase();
 
 	let { data } = $props<{ data: { localization: LocalizationEntry[] } }>();
-	console.log(data);
 
 	const database = data.localization;
 	const lookupTable = new Map<string, LocalizationEntry>(
