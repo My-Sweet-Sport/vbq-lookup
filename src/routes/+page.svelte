@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 
@@ -39,11 +40,11 @@
 		class="w-full max-w-2xl space-y-8 rounded-2xl border border-white/50 bg-white/90 p-10 shadow-2xl backdrop-blur-sm"
 	>
 		<header class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-			<img src="/logo.png" alt="VBQ Lookup" class="w-16 drop-shadow-md" />
+			<img src={`${base}/logo.png`} alt="VBQ Lookup" class="w-16 drop-shadow-md" />
 			<div>
 				<h1 class="text-3xl font-semibold text-[#0b3466]">Recherche de club VBQ</h1>
 				<p class="text-sm text-[#0b3466]/70">
-					Trouve rapidement la région Espoir associée à un ton code postal.
+					Trouve rapidement la région Espoir associée à ton code postal.
 				</p>
 			</div>
 		</header>
