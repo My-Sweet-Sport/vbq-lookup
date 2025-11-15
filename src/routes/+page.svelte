@@ -42,7 +42,7 @@
 		<header class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
 			<img src={`${base}/logo.png`} alt="VBQ Lookup" class="w-16 drop-shadow-md" />
 			<div>
-				<h1 class="text-3xl font-semibold text-[#0b3466]">Recherche de club VBQ</h1>
+				<h1 class="text-3xl font-semibold text-[#0b3466]">Trouve ton centre Espoir</h1>
 				<p class="text-sm text-[#0b3466]/70">
 					Trouve rapidement la région Espoir associée à ton code postal.
 				</p>
