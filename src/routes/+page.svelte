@@ -15,21 +15,24 @@
 
 	const database = data.localization;
 	const lookupTable = new Map<string, LocalizationEntry>(
-		database.map((entry: LocalizationEntry) => [normalize(entry.FSA), entry])
+		database.map((entry: LocalizationEntry) => [normalize(entry.FSA).slice(0, 3), entry])
 	);
 
 	let postalCode = $state('');
 	let result: LocalizationEntry | null = $state(null);
 	let errorMessage = $state('');
 
-	const handleSubmit = () => {
-		const key = normalize(postalCode);
+	const handleSubmit = (event: SubmitEvent) => {
+		event.preventDefault();
+		const key = normalize(postalCode).slice(0, 3);
+
+		if (key.length < 3) {
+			result = null;
+			errorMessage = 'Entre les trois premiers caractères de ton code postal.';
+			return;
+		}
 
 		result = lookupTable.get(key) ?? null;
-
-		if (!result && key.length > 3) {
-			result = lookupTable.get(key.slice(0, 3)) ?? null;
-		}
 
 		errorMessage = result ? '' : 'Aucun résultat trouvé.';
 	};
@@ -43,7 +46,7 @@
 			<img src={`${base}/logo.png`} alt="VBQ Lookup" class="w-16 drop-shadow-md" />
 			<div>
 				<h1 class="text-3xl font-semibold text-[#0b3466]">Trouve ton centre Espoir</h1>
-				<p class="text-sm text-[#0b3466]/70">
+				<p class="pt-2 text-sm text-muted-foreground">
 					Trouve rapidement la région Espoir associée à ton code postal.
 				</p>
 			</div>
@@ -53,14 +56,18 @@
 			<div
 				class="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:space-x-3"
 			>
-				<Input
-					type="text"
-					placeholder="Code Postal"
-					required
-					bind:value={postalCode}
-					autocomplete="postal-code"
-					class="h-12 w-full rounded-lg border border-[#0b3466]/30 bg-white/70 text-[#0b3466] placeholder:text-[#0b3466]/50 focus-visible:border-[#047ED6] focus-visible:ring-[#047ED6] sm:max-w-xs"
-				/>
+				<div class="flex w-full flex-col sm:max-w-xs">
+					<Input
+						type="text"
+						placeholder="3 premiers caractères (ex.: H3Z)"
+						required
+						minlength={3}
+						maxlength={3}
+						bind:value={postalCode}
+						autocomplete="postal-code"
+						class="h-12 w-full rounded-lg border border-[#0b3466]/30 bg-white/70 text-[#0b3466] placeholder:text-[#0b3466]/50 focus-visible:border-[#047ED6] focus-visible:ring-[#047ED6]"
+					/>
+				</div>
 				<Button
 					type="submit"
 					class="h-12 w-full  px-8 text-lg font-semibold text-white shadow-lg transition hover:shadow-xl sm:w-auto"
