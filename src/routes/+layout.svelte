@@ -1,5 +1,5 @@
 <script lang="ts">
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '$lib/assets/favicon.png';
 	import '../app.css';
 
 	let { children } = $props();
@@ -7,7 +7,8 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<title>Recherche Espoir</title>
 </svelte:head>
-<div class="flex min-w-screen justify-center bg-gradient-to-br from-[#e8ebf1] to-[#9aa8c0]">
+<div class="flex min-w-screen justify-center bg-linear-to-br from-[#e8ebf1] to-[#9aa8c0]">
 	{@render children?.()}
 </div>
